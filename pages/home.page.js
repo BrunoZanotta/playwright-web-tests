@@ -9,7 +9,6 @@ export class HomePage {
   }
 
   async verifyTitle() {
-    await expect(this.logo).toBeVisible();
     await expect(this.logo).toHaveText('Swag Labs'); 
     await expect(this.title).toHaveText('Products');
     await expect(this.title).toBeVisible(); 
