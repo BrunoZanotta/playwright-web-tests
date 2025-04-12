@@ -3,6 +3,7 @@ node_modules/
 *.env
 *.idea
 *.test-results
+*.e2e
 
 # Playwright
 /test-results/
