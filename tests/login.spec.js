@@ -16,7 +16,19 @@ test('FLOW-02: Login with invalid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.gotoLoginPage();
-  await loginPage.loginError();
-
-  await loginPage.verifyErrorMessage();
+  await loginPage.loginInvalid();
 }); 
+
+test('FLOW-03: Login with null username', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
+  await loginPage.gotoLoginPage();
+  await loginPage.loginUsernameNull();
+});
+
+test('FLOW-04: Login with null password', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
+  await loginPage.gotoLoginPage();
+  await loginPage.loginPasswordNull();
+});

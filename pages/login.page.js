@@ -1,38 +1,49 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import { expect } from '@playwright/test';
+import dotenv from 'dotenv'
+dotenv.config()
+import { expect } from '@playwright/test'
 
 export class LoginPage {
   constructor(page) {
     this.page = page
-    this.usernameInput = page.locator('[data-test="username"]')
-    this.passwordInput = page.locator('[data-test="password"]')
+    this.usernameInput = page.locator('#user-name')
+    this.passwordInput = page.locator('#password')
     this.submitButton = page.locator('#login-button')
     this.errorMessage = page.locator('[data-test="error"]')
   }
 
   async gotoLoginPage() {
-    await this.page.goto('https://www.saucedemo.com');
+    await this.page.goto('https://www.saucedemo.com')
   }
 
   async loginSuccess() {
-    const credentialsText  = await this.page.locator('.login_credentials').innerText()
-    const passwordText = await this.page.locator('.login_password').innerText()
-    const username = credentialsText.split('\n')[1].trim()
-    const password = passwordText.split('\n')[1].trim()
+    const userInfoText = await this.page.locator('.login_credentials').innerText()
+    const passwordInfoText = await this.page.locator('.login_password').innerText()
+    const username = userInfoText.split('\n')[1].trim()
+    const password = passwordInfoText.split('\n')[1].trim()
 
     await this.usernameInput.fill(username)
     await this.passwordInput.fill(password)
     await this.submitButton.click()
   }
 
-  async loginError() {
+  async loginInvalid() {
     await this.usernameInput.fill('tester') 
     await this.passwordInput.fill('tester')
     await this.submitButton.click()
+    await expect(this.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service')
   }
 
-  async verifyErrorMessage() { 
-    await expect(this.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
+  async loginUsernameNull() {
+    await this.usernameInput.fill('') 
+    await this.passwordInput.fill('tester')
+    await this.submitButton.click()
+    await expect(this.errorMessage).toHaveText('Epic sadface: Username is required')
+  }
+
+  async loginPasswordNull() {
+    await this.usernameInput.fill('tester') 
+    await this.passwordInput.fill('')
+    await this.submitButton.click()
+    await expect(this.errorMessage).toHaveText('Epic sadface: Password is required')
   }
 }
