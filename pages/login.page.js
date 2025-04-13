@@ -5,8 +5,8 @@ import { expect } from '@playwright/test';
 export class LoginPage {
   constructor(page) {
     this.page = page
-    this.usernameInput = page.locator('#user-name')
-    this.passwordInput = page.locator('#password')
+    this.usernameInput = page.locator('[data-test="username"]')
+    this.passwordInput = page.locator('[data-test="password"]')
     this.submitButton = page.locator('#login-button')
     this.errorMessage = page.locator('[data-test="error"]')
   }
@@ -16,8 +16,10 @@ export class LoginPage {
   }
 
   async loginSuccess() {
-    const username = process.env.USERNAME;
-    const password = process.env.PASSWORD;
+    const credentialsText  = await this.page.locator('.login_credentials').innerText()
+    const passwordText = await this.page.locator('.login_password').innerText()
+    const username = credentialsText.split('\n')[1].trim()
+    const password = passwordText.split('\n')[1].trim()
 
     await this.usernameInput.fill(username)
     await this.passwordInput.fill(password)

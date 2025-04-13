@@ -7,7 +7,10 @@
     "test:chromium": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
     "test:webkit": "npx playwright test --project=webkit",
-    "test:debug": "npx playwright test --debug"
+    "test:debug": "npx playwright test --debug",
+    "test:debug:chromium": "npx playwright test --project=chromium --debug",
+    "test:debug:firefox": "npx playwright test --project=firefox --debug",
+    "test:debug:webkit": "npx playwright test --project=webkit --debug"
   },
   "keywords": [],
   "author": "",
