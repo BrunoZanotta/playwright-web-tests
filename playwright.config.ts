@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  workers: 1, 
+  workers: 2, 
 
   use: {
     screenshot: 'only-on-failure',
