@@ -9,6 +9,7 @@ export class HomePage {
   }
 
   async verifyTitle() {
+    await this.page.waitForSelector('.app_logo');
     await expect(this.logo).toHaveText('Swag Labs'); 
     await expect(this.title).toHaveText('Products');
     await expect(this.title).toBeVisible(); 
@@ -16,6 +17,5 @@ export class HomePage {
 
   async clickCartButton() {
     await this.cartButton.click();
-    await this.page.waitForLoadState('networkidle');
   }
 }

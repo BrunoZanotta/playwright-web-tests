@@ -20,9 +20,5 @@ export default defineConfig({
       name: 'firefox',
       use: { browserName: 'firefox' },
     },
-    {
-      name: 'webkit',
-      use: { browserName: 'webkit' },
-    },
   ],
 });
