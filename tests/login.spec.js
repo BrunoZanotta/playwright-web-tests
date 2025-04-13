@@ -12,21 +12,28 @@ test('FLOW-01: Login with valid credentials', async ({ page }) => {
   await homePage.verifyTitle();  
 });
 
-test('FLOW-02: Login with invalid credentials', async ({ page }) => {
+test('FLOW-02: Login with user locked', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
+  await loginPage.gotoLoginPage();
+  await loginPage.loginLocked();
+}); 
+
+test('FLOW-03: Login with invalid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.gotoLoginPage();
   await loginPage.loginInvalid();
 }); 
 
-test('FLOW-03: Login with null username', async ({ page }) => {
+test('FLOW-04: Login with null username', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.gotoLoginPage();
   await loginPage.loginUsernameNull();
 });
 
-test('FLOW-04: Login with null password', async ({ page }) => {
+test('FLOW-05: Login with null password', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.gotoLoginPage();
