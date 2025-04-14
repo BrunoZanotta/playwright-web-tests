@@ -1,9 +1,9 @@
 const { test } = require('@playwright/test');
-const { LoginPage } = require('../../pages/login.page');
-const { HomePage } = require('../../pages/home.page');
+const { LoginPage } = require ('../../pages/login.page');
+const { HomePage } = require ('../../pages/home.page');
+
 
 test.describe('FLOW-01', () => {
-
   test('FLOW-01: Home', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
@@ -15,9 +15,12 @@ test.describe('FLOW-01', () => {
 
     await test.step('Verify home page elements', async () => {
       await homePage.verifyTitle();
-      await page.pause()
-      await homePage.verifyCart();
-      await homePage.verifyFilterProducts();
+      await homePage.verifyCartIsVisible();
+      await homePage.verifyFilterIsVisible();
+    });
+
+    await test.step('Validate product details', async () => {
+      await homePage.validateFirstProductsisVisible();
     });
   });
 });
