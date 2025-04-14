@@ -6,16 +6,21 @@ export class HomePage {
     this.logo = page.locator('.app_logo');
     this.title = page.locator('.title');
     this.cartButton = page.locator('#shopping_cart_container');
+    this.filterButton = page.locator('[data-test="product-sort-container"]')
   }
 
   async verifyTitle() {
-    await this.page.waitForSelector('.app_logo');
+    await expect(this.logo).toBeVisible();
     await expect(this.logo).toHaveText('Swag Labs'); 
     await expect(this.title).toHaveText('Products');
     await expect(this.title).toBeVisible(); 
   } 
+  
+  async verifyCart() {
+    await expect(this.cartButton).toBeVisible();  
+  }
 
-  async clickCartButton() {
-    await this.cartButton.click();
+  async verifyFilterProducts() {
+    await expect(this.filterButton).toBeVisible();
   }
 }
