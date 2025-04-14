@@ -10,3 +10,9 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+.eslintignore
+.prettierignore
+dist
+coverage
+test-results

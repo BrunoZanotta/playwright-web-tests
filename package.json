@@ -10,7 +10,10 @@
     "test:debug": "npx playwright test --debug",
     "test:debug:chromium": "npx playwright test --project=chromium --debug",
     "test:debug:firefox": "npx playwright test --project=firefox --debug",
-    "test:debug:webkit": "npx playwright test --project=webkit --debug"
+    "test:debug:webkit": "npx playwright test --project=webkit --debug",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +21,12 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.14.1"
+    "@types/node": "^22.14.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "dotenv": "^16.5.0"
