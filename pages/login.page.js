@@ -40,6 +40,18 @@ export class LoginPage {
     );
   }
 
+  async loginLocked() {
+    const userInfoText = await this.page.locator('.login_credentials').innerText()
+    const passwordInfoText = await this.page.locator('.login_password').innerText()
+    const username = userInfoText.split('\n')[2].trim()
+    const password = passwordInfoText.split('\n')[1].trim()
+
+    await this.usernameInput.fill(username)
+    await this.passwordInput.fill(password)
+    await this.submitButton.click()
+    await expect(this.errorMessage).toHaveText('Epic sadface: Sorry, this user has been locked out.')
+  }
+
   async loginInvalid() {
     await this.usernameInput.fill('tester');
     await this.passwordInput.fill('tester');
