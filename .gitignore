@@ -4,15 +4,16 @@ node_modules/
 *.idea
 *.test-results
 *.e2e
-
+.eslintignore
+.prettierignore
+dist
+coverage
+test-results
+*.env
+    
 # Playwright
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 
-.eslintignore
-.prettierignore
-dist
-coverage
-test-results
